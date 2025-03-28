@@ -3,8 +3,12 @@ using UnityEngine;
 public class PlayerInputHandler : MonoBehaviour
 {
     public float Horizontal { get; private set; }
-    public bool JumpPressed { get; private set; }
+
     private bool _jumpRequest;
+    private bool _dashRequest;
+
+    public delegate void DashRequestHandler();
+    public event DashRequestHandler OnDashRequested;
 
     private void Update()
     {
@@ -14,11 +18,17 @@ public class PlayerInputHandler : MonoBehaviour
         {
             _jumpRequest = true;
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            _dashRequest = true;
+            OnDashRequested?.Invoke();
+        }
     }
 
     public void ResetJump()
     {
-        JumpPressed = false;
+        _jumpRequest = false;
     }
 
     public bool GetJumpRequest()
@@ -27,5 +37,11 @@ public class PlayerInputHandler : MonoBehaviour
         _jumpRequest = false;
         return jump;
     }
-
+    
+    public bool GetDashRequest()
+    {
+        bool dash = _dashRequest;
+        _dashRequest = false;
+        return dash;
+    }
 }
