@@ -19,20 +19,20 @@ public class PlayerJumping : MonoBehaviour
         _input = GetComponent<PlayerInputHandler>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         CheckGrounded();
 
-        if (_input.JumpPressed)
+        if (_input.GetJumpRequest())
         {
             if (_isGrounded)
             {
-                _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, _jumpSpeed);
+                Jump(_jumpSpeed);
                 _canDoubleJump = true;
             }
             else if (_canDoubleJump)
             {
-                _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, _doubleJumpSpeed);
+                Jump(_doubleJumpSpeed);
                 _canDoubleJump = false;
             }
 
@@ -46,5 +46,10 @@ public class PlayerJumping : MonoBehaviour
         _isGrounded = hit.collider is not null;
 
         Debug.DrawRay(transform.position, Vector2.down * _groundCheckDistance, Color.red);
+    }
+
+    private void Jump(float jumpForce)
+    {
+        _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, jumpForce);
     }
 }
