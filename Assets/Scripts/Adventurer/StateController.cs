@@ -5,6 +5,8 @@ public class StateController : MonoBehaviour
 {
     private HorizontalMovement _horizontalMovement;
 
+    public Vector2 Direction { get; private set; }
+
     public State CurrentState { get; private set; }
 
     private void Awake()
@@ -57,6 +59,7 @@ public class StateController : MonoBehaviour
 
     public void UpdateMovementDirection(float direction)
     {
+        Direction = new Vector2(direction, Direction.y);
         _horizontalMovement.SetDirection(direction);
     }
 }

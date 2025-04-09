@@ -4,11 +4,11 @@ using UnityEngine.Playables;
 [RequireComponent(typeof(StateController))]
 public class InputHandler : MonoBehaviour
 {
-    private StateController controller;
+    private StateController _controller;
 
     private void Awake()
     {
-        controller = GetComponent<StateController>();
+        _controller = GetComponent<StateController>();
     }
 
     private void Update()
@@ -20,15 +20,15 @@ public class InputHandler : MonoBehaviour
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
 
-        controller.UpdateMovementDirection(horizontal);
+        _controller.UpdateMovementDirection(horizontal);
 
         if (horizontal != 0)
         {
-            controller.SetState(IsRunning() ? State.Running : State.Walking);
+            _controller.SetState(IsRunning() ? State.Running : State.Walking);
         }
         else
         {
-            controller.SetState(State.Idle);
+            _controller.SetState(State.Idle);
         }
     }
 
