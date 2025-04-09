@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3613484781320581498}
-  - component: {fileID: 8637708133558997867}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -33,18 +32,6 @@ Transform:
   - {fileID: 7738070763787473027}
   m_Father: {fileID: 1669174492296669448}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8637708133558997867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194032682076134313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1257ab6909ae16c41afa91cfb0d92e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1407904643659126409
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,10 +151,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1669174492296669448}
   - component: {fileID: 573931734256327329}
-  - component: {fileID: 6559574181093512462}
-  - component: {fileID: 6674705132514205604}
-  - component: {fileID: 9085922243043474885}
-  - component: {fileID: 5870731149267492586}
+  - component: {fileID: 5166289126258127031}
+  - component: {fileID: 7383181612094312654}
+  - component: {fileID: 2578908679077073980}
   m_Layer: 3
   m_Name: Adventurer
   m_TagString: Untagged
@@ -219,7 +205,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6559574181093512462
+--- !u!114 &5166289126258127031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,11 +214,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6662603382741777628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5392fc5a2fb2d2429f15a8286cc1049, type: 3}
+  m_Script: {fileID: 11500000, guid: f0c6d00ffbb7f644aa67680f081d22ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 5
---- !u!114 &6674705132514205604
+--- !u!114 &7383181612094312654
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -241,10 +226,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6662603382741777628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab7da3f6e646258468f4203690c3394a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f9b088dc77d46d4a9e76cc52dc4d7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9085922243043474885
+--- !u!114 &2578908679077073980
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -253,30 +238,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6662603382741777628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a38f439f2358c4147bf42fbd897fc6d7, type: 3}
+  m_Script: {fileID: 11500000, guid: fe64997f257c9844a88d6ec9b603eed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpSpeed: 5
-  _doubleJumpSpeed: 4
-  _groundCheckDistance: 1.2
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 1
---- !u!114 &5870731149267492586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6662603382741777628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe0d095762a17945b5ba48fe5aeead2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dashSpeed: 15
-  _dashDuration: 0.2
-  _dashCooldown: 1
+  _walkSpeed: 3
+  _runSpeed: 6
 --- !u!1 &6812600495521480446
 GameObject:
   m_ObjectHideFlags: 0
