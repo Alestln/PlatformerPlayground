@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3613484781320581498}
+  - component: {fileID: 8417996790598953401}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   - {fileID: 7738070763787473027}
   m_Father: {fileID: 1669174492296669448}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8417996790598953401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194032682076134313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 794b45d69607f92439b907f6a6e0e538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputHandler: {fileID: 4889037561374881816}
 --- !u!1 &1407904643659126409
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +168,6 @@ GameObject:
   - component: {fileID: 4889037561374881816}
   - component: {fileID: 8475673674733108284}
   - component: {fileID: 3602882673879203663}
-  - component: {fileID: 4510325792504205850}
   m_Layer: 3
   m_Name: Adventurer
   m_TagString: Untagged
@@ -247,19 +260,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _walkSpeed: 3
   _runSpeed: 6
---- !u!114 &4510325792504205850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6662603382741777628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 794b45d69607f92439b907f6a6e0e538, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _inputHandler: {fileID: 4889037561374881816}
 --- !u!1 &6812600495521480446
 GameObject:
   m_ObjectHideFlags: 0

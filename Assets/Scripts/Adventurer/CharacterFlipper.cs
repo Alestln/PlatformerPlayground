@@ -16,9 +16,9 @@ namespace Assets.Scripts.Adventurer
         {
             if (horizontalInput != 0f)
             {
-                Vector3 scale = transform.localScale;
+                Vector3 scale = _inputHandler.transform.localScale;
                 scale.x = horizontalInput;
-                transform.localScale = scale;
+                _inputHandler.transform.localScale = scale;
             }
         }
     }
