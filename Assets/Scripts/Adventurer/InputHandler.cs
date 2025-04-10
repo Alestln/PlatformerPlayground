@@ -1,39 +1,24 @@
 using UnityEngine;
-using UnityEngine.Playables;
 
-[RequireComponent(typeof(StateController))]
 public class InputHandler : MonoBehaviour
 {
-    private StateController _controller;
+    // Предоставляет InputData через публичное свойство
+    public InputData CurrentInput { get; private set; }
 
-    private void Awake()
+    void Update()
     {
-        _controller = GetComponent<StateController>();
-    }
-
-    private void Update()
-    {
-        HandleMovementInput();
-    }
-
-    private void HandleMovementInput()
-    {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-
-        _controller.UpdateMovementDirection(horizontal);
-
-        if (horizontal != 0)
+        // Заполняем структуру CurrentInput
+        CurrentInput = new InputData
         {
-            _controller.SetState(IsRunning() ? State.Running : State.Walking);
-        }
-        else
-        {
-            _controller.SetState(State.Idle);
-        }
+            HorizontalInput = Input.GetAxisRaw("Horizontal"),
+            IsRunHeld = Input.GetKey(KeyCode.LeftShift)
+            // Добавь чтение других кнопок сюда
+        };
     }
 
-    private bool IsRunning()
+    public void ResetInput()
     {
-        return Input.GetKey(KeyCode.LeftShift);
+        // Сбрасываем структуру к значениям по умолчанию
+        CurrentInput = default;
     }
 }

@@ -1,46 +1,50 @@
-п»їusing UnityEngine;
+using UnityEngine;
 
-namespace Assets.Scripts.Adventurer
+[RequireComponent(typeof(Rigidbody2D))]
+public class HorizontalMovement : MonoBehaviour
 {
-    [RequireComponent(typeof(Rigidbody2D))]
-    public class HorizontalMovement : MonoBehaviour
+    // --- Настройки скорости  ---
+    [Header("Settings")]
+    [SerializeField] private float _walkSpeed = 3f;
+    [SerializeField] private float _runSpeed = 6f;
+
+    private Rigidbody2D _rigidbody;
+    private float _currentDirection = 0f;
+    private float _selectedSpeed = 0f;
+    private bool _isMovementEnabled = true;
+
+    private void Awake()
     {
-        private Rigidbody2D _rigidBody;
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
 
-        private float _currentSpeed;
-        private float _direction;
-
-        [SerializeField] private float _walkSpeed = 3f;
-        [SerializeField] private float _runSpeed = 6f;
-
-        private void Awake()
+    private void FixedUpdate()
+    {
+        if (_isMovementEnabled)
         {
-            _rigidBody = GetComponent<Rigidbody2D>();
+            _rigidbody.velocity = new Vector2(_currentDirection * _selectedSpeed, _rigidbody.velocity.y);
         }
+    }
 
-        private void Start()
-        {
-            _currentSpeed = _walkSpeed;
-        }
+    public void Move(float direction, bool isRunning)
+    {
+        _currentDirection = direction;
+        _selectedSpeed = isRunning ? _runSpeed : _walkSpeed;
+    }
 
-        public void SetRunning(bool isRunning)
-        {
-            _currentSpeed = isRunning ? _runSpeed : _walkSpeed;
-        }
+    public void StopMovement()
+    {
+        _currentDirection = 0f;
+        _selectedSpeed = 0f;
+        _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
+    }
 
-        public void SetDirection(float direction)
+    public void EnableMovement(bool enable)
+    {
+        _isMovementEnabled = enable;
+        if (!enable)
         {
-            _direction = direction;
-        }
-
-        private void FixedUpdate()
-        {
-            ApplyHorizontalMovement();
-        }
-
-        private void ApplyHorizontalMovement()
-        {
-            _rigidBody.velocity = new Vector2(_currentSpeed * _direction, _rigidBody.velocity.y);
+            StopMovement();
         }
     }
 }

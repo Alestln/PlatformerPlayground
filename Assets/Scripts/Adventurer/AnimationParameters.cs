@@ -1,8 +1,6 @@
-﻿namespace Assets.Scripts.Adventurer
+public static class AnimationParameters
 {
-    public static class AnimationParameters
-    {
-        public const string IsWalking = "IsWalking";
-        public const string IsRunning = "IsRunning";
-    }
+    public const string IsIdle = "IsIdle";
+    public const string IsWalking = "IsWalking";
+    public const string IsRunning = "IsRunning";
 }

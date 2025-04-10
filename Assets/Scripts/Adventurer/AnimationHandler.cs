@@ -1,42 +1,36 @@
-п»їusing UnityEngine;
+using UnityEngine;
 
-namespace Assets.Scripts.Adventurer
+[RequireComponent(typeof(Animator))]
+public class AnimationHandler : MonoBehaviour
 {
-    [RequireComponent(typeof(Animator))]
-    public class AnimationHandler : MonoBehaviour
+    private Animator _animator;
+
+    private static readonly int StateIdle = Animator.StringToHash(AnimationParameters.IsIdle);
+    private static readonly int StateWalking = Animator.StringToHash(AnimationParameters.IsWalking);
+    private static readonly int StateRunning = Animator.StringToHash(AnimationParameters.IsRunning);
+
+    private void Awake()
     {
-        private Animator _animator;
-        private StateController _controller;
+        _animator = GetComponent<Animator>();
+    }
 
-        private void Awake()
+    public void UpdateStateAnimation(CharacterState state)
+    {
+        _animator.SetBool(StateIdle, state == CharacterState.Idle);
+        _animator.SetBool(StateWalking, state == CharacterState.Walking);
+        _animator.SetBool(StateRunning, state == CharacterState.Running);
+        // Добавить обработку других состояний
+    }
+
+    public void SetVisualDirection(float horizontalDirection)
+    {
+        if (Mathf.Approximately(horizontalDirection, 0f))
         {
-            _animator = GetComponent<Animator>();
-            _controller = GetComponentInParent<StateController>();
+            return;
         }
 
-        private void Update()
-        {
-            switch (_controller.CurrentState)
-            {
-                case State.Idle:
-                    break;
-                case State.Walking:
-                    Flip();
-                    break;
-                case State.Running:
-                    Flip();
-                    break;
-            }
-        }
-
-        private void Flip()
-        {
-            if (_controller.Direction.x != 0)
-            {
-                Vector3 scale = _controller.transform.localScale;
-                scale.x = _controller.Direction.x * Mathf.Abs(scale.x);
-                _controller.transform.localScale = scale;
-            }
-        }
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Sign(horizontalDirection) * Mathf.Abs(scale.x);
+        transform.localScale = scale;
     }
 }
