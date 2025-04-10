@@ -1,7 +1,7 @@
 using Assets.Scripts.Adventurer;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class AdventureController : MonoBehaviour
 {
     [Header("Dependencies")]
     [SerializeField] private InputHandler _inputHandler;
