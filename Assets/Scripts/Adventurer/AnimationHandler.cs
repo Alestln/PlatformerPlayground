@@ -8,6 +8,8 @@ public class AnimationHandler : MonoBehaviour
     private static readonly int StateIdle = Animator.StringToHash(AnimationParameters.IsIdle);
     private static readonly int StateWalking = Animator.StringToHash(AnimationParameters.IsWalking);
     private static readonly int StateRunning = Animator.StringToHash(AnimationParameters.IsRunning);
+    private static readonly int StateJump = Animator.StringToHash(AnimationParameters.JumpTrigger);
+    private static readonly int IsGroundedParam = Animator.StringToHash(AnimationParameters.IsGrounded);
 
     private void Awake()
     {
@@ -21,15 +23,13 @@ public class AnimationHandler : MonoBehaviour
         _animator.SetBool(StateRunning, state == CharacterState.Running);
     }
 
-    public void SetVisualDirection(float horizontalDirection)
+    public void AnimateJump()
     {
-        if (Mathf.Approximately(horizontalDirection, 0f))
-        {
-            return;
-        }
+        _animator.SetTrigger(StateJump);
+    }
 
-        Vector3 scale = transform.localScale;
-        scale.x = Mathf.Sign(horizontalDirection) * Mathf.Abs(scale.x);
-        transform.localScale = scale;
+    public void SetGrounded(bool isGrounded)
+    {
+        _animator.SetBool(IsGroundedParam, isGrounded);
     }
 }

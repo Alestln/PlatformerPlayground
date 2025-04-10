@@ -9,7 +9,8 @@ public class InputHandler : MonoBehaviour
         CurrentInput = new InputData
         {
             HorizontalInput = Input.GetAxisRaw("Horizontal"),
-            IsRunHeld = Input.GetKey(KeyCode.LeftShift)
+            IsRunHeld = Input.GetKey(KeyCode.LeftShift),
+            IsJumping = Input.GetKeyDown(KeyCode.Space)
         };
     }
 

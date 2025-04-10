@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 4889037561374881816}
   - component: {fileID: 8475673674733108284}
   - component: {fileID: 3602882673879203663}
+  - component: {fileID: 4071871271456512741}
   m_Layer: 3
   m_Name: Adventurer
   m_TagString: Untagged
@@ -246,6 +247,7 @@ MonoBehaviour:
   _inputHandler: {fileID: 4889037561374881816}
   _horizontalMovement: {fileID: 3602882673879203663}
   _animationHandler: {fileID: 8729136217847162924}
+  _jumpHandler: {fileID: 4071871271456512741}
 --- !u!114 &3602882673879203663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +262,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _walkSpeed: 3
   _runSpeed: 6
+--- !u!114 &4071871271456512741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6662603382741777628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3cea1130d716e74ca3c22eac6f17678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _jumpForce: 7
+  _groundCheckDistance: 1.3
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &6812600495521480446
 GameObject:
   m_ObjectHideFlags: 0
