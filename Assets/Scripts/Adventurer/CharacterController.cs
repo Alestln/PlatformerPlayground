@@ -2,30 +2,26 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    // --- Зависимости (Назначаются в инспекторе) ---
     [Header("Dependencies")]
     [SerializeField] private InputHandler _inputHandler;
     [SerializeField] private HorizontalMovement _horizontalMovement;
-    [SerializeField] private AnimationHandler _animationHandler; // Прямая ссылка
-    // Добавь сюда другие механики и, возможно, другие части анимации
+    [SerializeField] private AnimationHandler _animationHandler;
 
     private CharacterState _currentState = CharacterState.Idle;
+    private InputData _inputData;
 
     private void Start()
     {
-        UpdateStateAndCommand(_currentState, default);
+        UpdateStateAndCommand(_currentState);
     }
 
     private void Update()
     {
-        // 1. Получаем InputData
-        InputData input = _inputHandler.CurrentInput;
+        _inputData = _inputHandler.CurrentInput;
 
-        // 2. Определяем целевое состояние на основе InputData
-        CharacterState newState = DetermineState(input);
+        CharacterState newState = DetermineState(_inputData);
 
-        // 3. Обновляем состояние и отдаем команды, используя InputData
-        UpdateStateAndCommand(newState, input.HorizontalInput);
+        UpdateStateAndCommand(newState);
     }
 
     private CharacterState DetermineState(InputData input)
@@ -40,7 +36,7 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    private void UpdateStateAndCommand(CharacterState newState, float currentHorizontalInput)
+    private void UpdateStateAndCommand(CharacterState newState)
     {
         _currentState = newState;
 
@@ -55,12 +51,12 @@ public class CharacterController : MonoBehaviour
 
             case CharacterState.Walking:
                 _horizontalMovement.EnableMovement(true);
-                _horizontalMovement.Move(currentHorizontalInput, false);
+                _horizontalMovement.Move(_inputData.HorizontalInput, false);
                 break;
 
             case CharacterState.Running:
                 _horizontalMovement.EnableMovement(true);
-                _horizontalMovement.Move(currentHorizontalInput, true);
+                _horizontalMovement.Move(_inputData.HorizontalInput, true);
                 break;
 
             default:

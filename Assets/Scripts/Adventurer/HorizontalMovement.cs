@@ -3,7 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class HorizontalMovement : MonoBehaviour
 {
-    // --- Настройки скорости  ---
     [Header("Settings")]
     [SerializeField] private float _walkSpeed = 3f;
     [SerializeField] private float _runSpeed = 6f;

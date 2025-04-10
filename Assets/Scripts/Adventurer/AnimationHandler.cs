@@ -19,7 +19,6 @@ public class AnimationHandler : MonoBehaviour
         _animator.SetBool(StateIdle, state == CharacterState.Idle);
         _animator.SetBool(StateWalking, state == CharacterState.Walking);
         _animator.SetBool(StateRunning, state == CharacterState.Running);
-        // ƒобавить обработку других состо€ний
     }
 
     public void SetVisualDirection(float horizontalDirection)
