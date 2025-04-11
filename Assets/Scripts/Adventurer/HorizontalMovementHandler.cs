@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class HorizontalMovement : MonoBehaviour
+public class HorizontalMovementHandler : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private float _walkSpeed = 3f;
@@ -43,7 +43,7 @@ public class HorizontalMovement : MonoBehaviour
         _isMovementEnabled = enable;
         if (!enable)
         {
-            StopMovement();
+            _selectedSpeed = 0;
         }
     }
 }

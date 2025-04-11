@@ -5,9 +5,12 @@ public class AdventureController : MonoBehaviour
 {
     [Header("Dependencies")]
     [SerializeField] private InputHandler _inputHandler;
-    [SerializeField] private HorizontalMovement _horizontalMovement;
+    [SerializeField] private CharacterFlipper _characterFlipper;
+
+    [SerializeField] private HorizontalMovementHandler _horizontalMovementHandler;
     [SerializeField] private AnimationHandler _animationHandler;
     [SerializeField] private JumpHandler _jumpHandler;
+    [SerializeField] private DashHandler _dashHandler;
 
     private CharacterState _currentState = CharacterState.Idle;
     private InputData _inputData;
@@ -18,6 +21,11 @@ public class AdventureController : MonoBehaviour
 
         _inputData = _inputHandler.CurrentInput;
 
+        if (_currentState != CharacterState.Dash)
+        {
+            _characterFlipper.UpdateDirection(_inputData.HorizontalInput);
+        }
+
         CharacterState newState = DetermineState(_inputData);
 
         UpdateStateAndCommand(newState);
@@ -25,6 +33,17 @@ public class AdventureController : MonoBehaviour
 
     private CharacterState DetermineState(InputData input)
     {
+        if (_dashHandler.IsDashing)
+        {
+            return CharacterState.Dash;
+        }
+
+        if (input.IsDashing)
+        {
+            input.IsDashing = false;
+            return CharacterState.Dash;
+        }
+
         if (input.IsJumping)
         {
             input.IsJumping = false;
@@ -50,27 +69,33 @@ public class AdventureController : MonoBehaviour
         switch (_currentState)
         {
             case CharacterState.Idle:
-                _horizontalMovement.EnableMovement(true);
-                _horizontalMovement.StopMovement();
+                _horizontalMovementHandler.EnableMovement(true);
+                _horizontalMovementHandler.StopMovement();
                 break;
 
             case CharacterState.Walking:
-                _horizontalMovement.EnableMovement(true);
-                _horizontalMovement.Move(_inputData.HorizontalInput, false);
+                _horizontalMovementHandler.EnableMovement(true);
+                _horizontalMovementHandler.Move(_inputData.HorizontalInput, false);
                 break;
 
             case CharacterState.Running:
-                _horizontalMovement.EnableMovement(true);
-                _horizontalMovement.Move(_inputData.HorizontalInput, true);
+                _horizontalMovementHandler.EnableMovement(true);
+                _horizontalMovementHandler.Move(_inputData.HorizontalInput, true);
                 break;
 
             case CharacterState.Jump:
+                _horizontalMovementHandler.EnableMovement(true);
                 _jumpHandler.PerformJump();
                 _animationHandler.AnimateJump();
                 break;
 
+            case CharacterState.Dash:
+                _horizontalMovementHandler.EnableMovement(false);
+                _dashHandler.PerformDash();
+                break;
+
             default:
-                _horizontalMovement.EnableMovement(false);
+                _horizontalMovementHandler.EnableMovement(false);
                 Debug.LogWarning($"Необработанное состояние {_currentState} в CharacterController. Горизонтальное движение отключено.");
                 break;
         }

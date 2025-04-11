@@ -12,6 +12,7 @@ public class AnimationHandler : MonoBehaviour
     private static readonly int StateRunning = Animator.StringToHash(AnimationParameters.IsRunning);
     private static readonly int StateJump = Animator.StringToHash(AnimationParameters.JumpTrigger);
     private static readonly int StateDoubleJump = Animator.StringToHash(AnimationParameters.DoubleJumpTrigger);
+    private static readonly int StateDash = Animator.StringToHash(AnimationParameters.DashTrigger);
     private static readonly int IsGroundedParam = Animator.StringToHash(AnimationParameters.IsGrounded);
 
     private void Awake()
@@ -36,6 +37,11 @@ public class AnimationHandler : MonoBehaviour
         {
             _animator.SetTrigger(StateDoubleJump);
         }
+    }
+
+    public void AnimateDash()
+    {
+        _animator.SetTrigger(StateDash);
     }
 
     public void SetGrounded(bool isGrounded)

@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 8475673674733108284}
   - component: {fileID: 3602882673879203663}
   - component: {fileID: 4071871271456512741}
+  - component: {fileID: 148148990263906497}
   m_Layer: 3
   m_Name: Adventurer
   m_TagString: Untagged
@@ -245,9 +246,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputHandler: {fileID: 4889037561374881816}
-  _horizontalMovement: {fileID: 3602882673879203663}
+  _characterFlipper: {fileID: 8417996790598953401}
+  _horizontalMovementHandler: {fileID: 3602882673879203663}
   _animationHandler: {fileID: 8729136217847162924}
   _jumpHandler: {fileID: 4071871271456512741}
+  _dashHandler: {fileID: 148148990263906497}
 --- !u!114 &3602882673879203663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,6 +284,21 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &148148990263906497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6662603382741777628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb75161dde9e50e4292288b629a0fd00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dashSpeed: 15
+  _dashDuration: 0.2
+  _dashCooldown: 1
 --- !u!1 &6812600495521480446
 GameObject:
   m_ObjectHideFlags: 0

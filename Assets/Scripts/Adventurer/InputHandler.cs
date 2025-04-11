@@ -10,12 +10,8 @@ public class InputHandler : MonoBehaviour
         {
             HorizontalInput = Input.GetAxisRaw("Horizontal"),
             IsRunHeld = Input.GetKey(KeyCode.LeftShift),
-            IsJumping = Input.GetKeyDown(KeyCode.Space)
+            IsJumping = Input.GetKeyDown(KeyCode.Space),
+            IsDashing = Input.GetKeyDown(KeyCode.LeftAlt)
         };
-    }
-
-    public void ResetInput()
-    {
-        CurrentInput = default;
     }
 }

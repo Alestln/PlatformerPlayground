@@ -8,12 +8,7 @@ namespace Assets.Scripts.Adventurer
         [SerializeField] private InputHandler _inputHandler;
         private float _previousDirection = 1f;
 
-        private void Update()
-        {
-            UpdateDirection(_inputHandler.CurrentInput.HorizontalInput);
-        }
-
-        private void UpdateDirection(float horizontalInput)
+        public void UpdateDirection(float horizontalInput)
         {
             if (horizontalInput != 0f && horizontalInput != _previousDirection)
             {

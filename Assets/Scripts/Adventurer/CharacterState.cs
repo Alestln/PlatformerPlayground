@@ -3,5 +3,6 @@ public enum CharacterState
     Idle,
     Walking,
     Running,
-    Jump
+    Jump,
+    Dash
 }
