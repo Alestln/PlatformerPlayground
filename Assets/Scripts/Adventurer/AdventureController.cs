@@ -15,6 +15,8 @@ public class AdventureController : MonoBehaviour
     private CharacterState _currentState = CharacterState.Idle;
     private InputData _inputData;
 
+    private bool _jumpRequested;
+
     private void Update()
     {
         _animationHandler.SetGrounded(_jumpHandler.IsGrounded);
@@ -26,9 +28,9 @@ public class AdventureController : MonoBehaviour
             _characterFlipper.UpdateDirection(_inputData.HorizontalInput);
         }
 
-        CharacterState newState = DetermineState(_inputData);
+        _currentState = DetermineState(_inputData);
 
-        UpdateStateAndCommand(newState);
+        UpdateStateAndCommand();
     }
 
     private CharacterState DetermineState(InputData input)
@@ -60,10 +62,8 @@ public class AdventureController : MonoBehaviour
         }
     }
 
-    private void UpdateStateAndCommand(CharacterState newState)
+    private void UpdateStateAndCommand()
     {
-        _currentState = newState;
-
         _animationHandler.UpdateStateAnimation(_currentState);
 
         switch (_currentState)
@@ -92,11 +92,6 @@ public class AdventureController : MonoBehaviour
             case CharacterState.Dash:
                 _horizontalMovementHandler.EnableMovement(false);
                 _dashHandler.PerformDash();
-                break;
-
-            default:
-                _horizontalMovementHandler.EnableMovement(false);
-                Debug.LogWarning($"Необработанное состояние {_currentState} в CharacterController. Горизонтальное движение отключено.");
                 break;
         }
     }
