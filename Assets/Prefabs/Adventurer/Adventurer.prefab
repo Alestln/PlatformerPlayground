@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3613484781320581498}
   - component: {fileID: 8417996790598953401}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 194032682076134313}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3239264, y: -0.97903645, z: -0.01411029}
+  m_LocalPosition: {x: 0.3239264, y: -0.97903645, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1840008344251060004}
   - component: {fileID: 4759506901171037209}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: BodyCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9047962285075728723}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 3602882673879203663}
   - component: {fileID: 4071871271456512741}
   - component: {fileID: 148148990263906497}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Adventurer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,10 +280,10 @@ MonoBehaviour:
   _jumpForce: 7
   _doubleJumpForce: 5
   _doubleJumpDelay: 0.4
-  _groundCheckDistance: 1.3
+  _groundCheckDistance: 1.2
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 64
 --- !u!114 &148148990263906497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 4951757239399257283}
   - component: {fileID: 8729136217847162924}
   - component: {fileID: 5721261001163816343}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +328,7 @@ Transform:
   m_GameObject: {fileID: 6812600495521480446}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3239264, y: 0.97903645, z: 0.01411029}
+  m_LocalPosition: {x: -0.3239264, y: 0.97903645, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -6,6 +6,7 @@ public class AnimationHandler : MonoBehaviour
     private Animator _animator;
 
     private bool _isGrounded = true;
+    private bool _animatedDoubleJump;
 
     private static readonly int StateIdle = Animator.StringToHash(AnimationParameters.IsIdle);
     private static readonly int StateWalking = Animator.StringToHash(AnimationParameters.IsWalking);
@@ -33,9 +34,10 @@ public class AnimationHandler : MonoBehaviour
         {
             _animator.SetTrigger(StateJump);
         }
-        else
+        else if (!_animatedDoubleJump)
         {
             _animator.SetTrigger(StateDoubleJump);
+            _animatedDoubleJump = true;
         }
     }
 
@@ -47,6 +49,12 @@ public class AnimationHandler : MonoBehaviour
     public void SetGrounded(bool isGrounded)
     {
         _isGrounded = isGrounded;
+
+        if (isGrounded)
+        {
+            _animatedDoubleJump = false;
+        }
+
         _animator.SetBool(IsGroundedParam, isGrounded);
     }
 }

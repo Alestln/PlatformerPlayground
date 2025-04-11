@@ -15,8 +15,6 @@ public class AdventureController : MonoBehaviour
     private CharacterState _currentState = CharacterState.Idle;
     private InputData _inputData;
 
-    private bool _jumpRequested;
-
     private void Update()
     {
         _animationHandler.SetGrounded(_jumpHandler.IsGrounded);
