@@ -34,8 +34,6 @@ namespace Assets.Scripts.Adventurer
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, _groundCheckDistance, _groundLayer);
             IsGrounded = hit.collider is not null;
 
-            Debug.Log($"IsGrounded: {IsGrounded}");
-
             Debug.DrawRay(transform.position, Vector2.down * _groundCheckDistance, Color.red);
         }
 

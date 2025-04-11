@@ -14,13 +14,13 @@ public class AdventureController : MonoBehaviour
 
     private void Update()
     {
+        _animationHandler.SetGrounded(_jumpHandler.IsGrounded);
+
         _inputData = _inputHandler.CurrentInput;
 
         CharacterState newState = DetermineState(_inputData);
 
         UpdateStateAndCommand(newState);
-
-        _animationHandler.SetGrounded(_jumpHandler.IsGrounded);
     }
 
     private CharacterState DetermineState(InputData input)

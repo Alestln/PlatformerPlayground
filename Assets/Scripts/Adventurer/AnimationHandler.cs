@@ -5,10 +5,13 @@ public class AnimationHandler : MonoBehaviour
 {
     private Animator _animator;
 
+    private bool _isGrounded = true;
+
     private static readonly int StateIdle = Animator.StringToHash(AnimationParameters.IsIdle);
     private static readonly int StateWalking = Animator.StringToHash(AnimationParameters.IsWalking);
     private static readonly int StateRunning = Animator.StringToHash(AnimationParameters.IsRunning);
     private static readonly int StateJump = Animator.StringToHash(AnimationParameters.JumpTrigger);
+    private static readonly int StateDoubleJump = Animator.StringToHash(AnimationParameters.DoubleJumpTrigger);
     private static readonly int IsGroundedParam = Animator.StringToHash(AnimationParameters.IsGrounded);
 
     private void Awake()
@@ -25,11 +28,19 @@ public class AnimationHandler : MonoBehaviour
 
     public void AnimateJump()
     {
-        _animator.SetTrigger(StateJump);
+        if (_isGrounded)
+        {
+            _animator.SetTrigger(StateJump);
+        }
+        else
+        {
+            _animator.SetTrigger(StateDoubleJump);
+        }
     }
 
     public void SetGrounded(bool isGrounded)
     {
+        _isGrounded = isGrounded;
         _animator.SetBool(IsGroundedParam, isGrounded);
     }
 }
