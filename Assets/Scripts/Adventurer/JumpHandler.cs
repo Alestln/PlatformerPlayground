@@ -6,6 +6,8 @@ namespace Assets.Scripts.Adventurer
     {
         [Header("Settings")]
         [SerializeField] private float _jumpForce = 7f;
+        [SerializeField] private float _doubleJumpForce = 5f;
+        [SerializeField] private float _doubleJumpDelay = 0.2f;
 
         [Header("Ground Check")]
         [SerializeField] private float _groundCheckDistance = 1f;
@@ -39,9 +41,14 @@ namespace Assets.Scripts.Adventurer
         {
             if (IsGrounded)
             {
-                _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, _jumpForce);
+                ApplyJumpForce(_jumpForce);
                 IsGrounded = false;
             }
+        }
+
+        private void ApplyJumpForce(float jumpForce)
+        {
+            _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, jumpForce);
         }
     }
 }
