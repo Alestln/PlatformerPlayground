@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 288958542}
   - component: {fileID: 288958541}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 944280526}
   - component: {fileID: 944280525}
   - component: {fileID: 944280524}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ObstaclesTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
