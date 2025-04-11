@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Assets.Scripts.Adventurer
 {
@@ -14,6 +15,7 @@ namespace Assets.Scripts.Adventurer
         [SerializeField] private LayerMask _groundLayer;
 
         private Rigidbody2D _rigidBody;
+        private bool _canDoubleJump;
 
         public bool IsGrounded { get; private set; }
 
@@ -43,12 +45,26 @@ namespace Assets.Scripts.Adventurer
             {
                 ApplyJumpForce(_jumpForce);
                 IsGrounded = false;
+
+                StartCoroutine(EnableDoubleJump());
+            }
+            else if (_canDoubleJump)
+            {
+                ApplyJumpForce(_doubleJumpForce);
+                _canDoubleJump = false;
             }
         }
 
         private void ApplyJumpForce(float jumpForce)
         {
             _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, jumpForce);
+        }
+
+        private IEnumerator EnableDoubleJump()
+        {
+            yield return new WaitForSeconds(_doubleJumpDelay);
+
+            _canDoubleJump = true;
         }
     }
 }

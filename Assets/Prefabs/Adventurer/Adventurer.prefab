@@ -275,6 +275,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpForce: 7
+  _doubleJumpForce: 5
+  _doubleJumpDelay: 0.4
   _groundCheckDistance: 1.3
   _groundLayer:
     serializedVersion: 2
