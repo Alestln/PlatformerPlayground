@@ -758,7 +758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
-  offsetPercent: 0.05
+  offsetPercent: 0.2
   parallaxFactor: 0.4
 --- !u!4 &934414092 stripped
 Transform:
@@ -8495,7 +8495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
-  offsetPercent: 0.05
+  offsetPercent: 0.2
   parallaxFactor: 0.6
 --- !u!1 &1784174957 stripped
 GameObject:
@@ -8520,7 +8520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
-  offsetPercent: 0.05
+  offsetPercent: 0.2
   parallaxFactor: 0.1
 --- !u!1 &1958305311
 GameObject:
