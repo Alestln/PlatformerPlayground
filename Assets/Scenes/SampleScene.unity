@@ -636,6 +636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
   offsetPercent: 0.05
+  parallaxFactor: 0.4
 --- !u!4 &934414092 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5751839899357033733, guid: eb91c8f1a5670724a98fd84f6b425fef, type: 3}
@@ -8372,6 +8373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
   offsetPercent: 0.05
+  parallaxFactor: 0.6
 --- !u!1 &1784174957 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2405720193990965255, guid: 547ea331267d8dd42b431144809b635a, type: 3}
@@ -8396,6 +8398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
   offsetPercent: 0.05
+  parallaxFactor: 0.1
 --- !u!1 &1958305311
 GameObject:
   m_ObjectHideFlags: 0
