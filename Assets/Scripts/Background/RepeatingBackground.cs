@@ -6,21 +6,16 @@ public class RepeatingBackground : MonoBehaviour
 {
     [SerializeField] private Camera cam;
     [Range(0f, 1f)][SerializeField] private float parallaxFactor = 0.5f;
-
     private float spriteWidth;
     private Transform leftBg;
     private Transform centerBg;
     private Transform rightBg;
-
-    private bool _leftCrossed, _rightCrossed;
-
     private Vector3 prevCamPos;
-    private Vector3 parallaxOffset;
+    private float baseParallaxPosition; // Базовая позиция для расчета параллакса
 
     private void Start()
     {
         spriteWidth = GetComponent<SpriteRenderer>().bounds.size.x;
-
         // Центр — это текущий фон
         centerBg = transform;
         leftBg = transform.parent.Find("Left");
@@ -31,56 +26,55 @@ public class RepeatingBackground : MonoBehaviour
         rightBg.position = centerBg.position + new Vector3(spriteWidth, 0f, 0f);
 
         prevCamPos = cam.transform.position;
-        parallaxOffset = Vector3.zero;
+        baseParallaxPosition = centerBg.position.x - cam.transform.position.x; // Разница между начальными позициями
     }
 
     private void LateUpdate()
     {
-        // ==== ПАРАЛЛАКС ====
+        // Рассчитываем смещение камеры с прошлого кадра
         Vector3 camDelta = cam.transform.position - prevCamPos;
-        parallaxOffset -= new Vector3(camDelta.x * parallaxFactor, camDelta.y * parallaxFactor, 0f);
         prevCamPos = cam.transform.position;
 
-        // Обновляем позицию корневого (центрального) фона + оффсет
-        Vector3 basePos = cam.transform.position + parallaxOffset;
-        Vector3 newCenterPos = new Vector3(basePos.x, centerBg.position.y, centerBg.position.z);
-        centerBg.position = newCenterPos;
+        // Обновляем базовую позицию параллакса
+        baseParallaxPosition -= camDelta.x * parallaxFactor;
+
+        // Вычисляем новую позицию центрального фона с учетом параллакса
+        float newCenterX = cam.transform.position.x + baseParallaxPosition;
+        centerBg.position = new Vector3(newCenterX, centerBg.position.y, centerBg.position.z);
 
         // Обновляем соседей
         leftBg.position = centerBg.position - new Vector3(spriteWidth, 0f, 0f);
         rightBg.position = centerBg.position + new Vector3(spriteWidth, 0f, 0f);
 
+        // Проверяем границы камеры
         float camHalfWidth = cam.orthographicSize * cam.aspect;
-
         float cameraLeftEdge = cam.transform.position.x - camHalfWidth;
         float cameraRightEdge = cam.transform.position.x + camHalfWidth;
 
-        float rightmostBgEdge = centerBg.position.x + spriteWidth / 2f;
-        float leftmostBgEdge = centerBg.position.x - spriteWidth / 2f;
+        // Используем позицию центрального фона для определения границ
+        float centerBgRightEdge = centerBg.position.x + spriteWidth / 2f;
+        float centerBgLeftEdge = centerBg.position.x - spriteWidth / 2f;
 
-        if (cameraLeftEdge > rightmostBgEdge)
+        // Используем большой запас, чтобы избежать частых переключений
+        float safetyMargin = camHalfWidth * 0.1f;
+
+        // Камера полностью справа от центрального фона
+        if (cameraLeftEdge > centerBgRightEdge + safetyMargin)
         {
-            leftBg.position = rightBg.position + Vector3.right * spriteWidth;
+            // Сначала физически переместить левый фон вправо
+            leftBg.position = rightBg.position + new Vector3(spriteWidth, 0f, 0f);
 
-            Transform centerTemp = centerBg;
-            Transform leftTemp = leftBg;
-            Transform rightTemp = rightBg;
-
-            centerBg = leftTemp;
-            rightBg = centerTemp;
-            leftBg = rightTemp;
+            // Затем поменять ссылки
+            (leftBg, centerBg, rightBg) = (centerBg, rightBg, leftBg);
         }
-        else if (cameraRightEdge < leftmostBgEdge)
+        // Камера полностью слева от центрального фона
+        else if (cameraRightEdge < centerBgLeftEdge - safetyMargin)
         {
-            rightBg.position = leftBg.position - Vector3.right * spriteWidth;
+            // Сначала физически переместить правый фон влево
+            rightBg.position = leftBg.position - new Vector3(spriteWidth, 0f, 0f);
 
-            Transform centerTemp = centerBg;
-            Transform leftTemp = leftBg;
-            Transform rightTemp = rightBg;
-
-            centerBg = rightTemp;
-            leftBg = centerTemp;
-            rightBg = leftTemp;
+            // Затем поменять ссылки
+            (leftBg, centerBg, rightBg) = (rightBg, leftBg, centerBg);
         }
     }
 }
